@@ -40,3 +40,11 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/calculator-app
+      - name: Create Artifact
+        run: zip -r build-package.zip .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-package
+          path: build-package.zip
